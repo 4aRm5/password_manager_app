@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt;
 
 namespace Курсач
 {
@@ -127,12 +128,14 @@ namespace Курсач
 
         private void registerButton_Click(object sender, EventArgs e)
         {
-            String login = loginField.Text;
-            String passwd = passwdField.Text;
-            String email = EmailField.Text;
-            String phone = PhoneField.Text;
+            string login = loginField.Text;
+            string passwd = passwdField.Text;
+            string email = EmailField.Text;
+            string phone = PhoneField.Text;
             Regex phoneRegex = new Regex("^\\+?[1-9][0-9]{7,14}$");
             Regex emailRegex = new Regex("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}$");
+
+            string passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(passwd, 13);
 
 
             if (EmailField.Text == "Email" || emailRegex.IsMatch(EmailField.Text) == false)
@@ -209,7 +212,7 @@ namespace Курсач
                 {
                     command = new Npgsql.NpgsqlCommand("INSERT INTO users (email, passwd, phone_number, login) values (@um, @up, @uph, @ul)", db.GetConnection());
                     command.Parameters.Add("@um", NpgsqlTypes.NpgsqlDbType.Text).Value = email;
-                    command.Parameters.Add("@up", NpgsqlTypes.NpgsqlDbType.Text).Value = passwd;
+                    command.Parameters.Add("@up", NpgsqlTypes.NpgsqlDbType.Text).Value = passwordHash;
                     command.Parameters.Add("@uph", NpgsqlTypes.NpgsqlDbType.Text).Value = phone;
                     command.Parameters.Add("@ul", NpgsqlTypes.NpgsqlDbType.Text).Value = login;
 
@@ -222,6 +225,81 @@ namespace Курсач
                     loginform.Show();
                 }
             }
+        }
+
+        private void pictureHide_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pictureHide_MouseEnter(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientActiveCaption;
+        }
+
+        private void pictureHide_MouseLeave(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        private void panelHide_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void panelHide_MouseEnter(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientActiveCaption;
+        }
+
+        private void panelHide_MouseLeave(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        private void pictureExit_MouseClick(object sender, MouseEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureExit_MouseEnter(object sender, EventArgs e)
+        {
+            panelExit.BackColor = Color.Red;
+        }
+
+        private void pictureExit_MouseLeave(object sender, EventArgs e)
+        {
+            panelExit.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        private void panelExit_MouseClick(object sender, MouseEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void panelExit_MouseEnter(object sender, EventArgs e)
+        {
+            panelExit.BackColor = Color.Red;
+        }
+
+        private void panelExit_MouseLeave(object sender, EventArgs e)
+        {
+            panelExit.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        Point lastPoint;
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
         }
     }
 }

@@ -36,7 +36,15 @@
             this.createAccount = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.closeButton = new System.Windows.Forms.Label();
+            this.panelExit = new System.Windows.Forms.Panel();
+            this.pictureExit = new System.Windows.Forms.PictureBox();
+            this.panelHide = new System.Windows.Forms.Panel();
+            this.pictureHide = new System.Windows.Forms.PictureBox();
+            this.panelMove = new System.Windows.Forms.Panel();
+            this.panelExit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureExit)).BeginInit();
+            this.panelHide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHide)).BeginInit();
             this.SuspendLayout();
             // 
             // loginField
@@ -138,17 +146,65 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "password:";
             // 
-            // closeButton
+            // panelExit
             // 
-            this.closeButton.AutoSize = true;
-            this.closeButton.Location = new System.Drawing.Point(370, 9);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(15, 16);
-            this.closeButton.TabIndex = 8;
-            this.closeButton.Text = "X";
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click_1);
-            this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
-            this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
+            this.panelExit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelExit.Controls.Add(this.pictureExit);
+            this.panelExit.Location = new System.Drawing.Point(353, 0);
+            this.panelExit.Name = "panelExit";
+            this.panelExit.Size = new System.Drawing.Size(45, 23);
+            this.panelExit.TabIndex = 8;
+            this.panelExit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelExit_MouseClick);
+            this.panelExit.MouseEnter += new System.EventHandler(this.panelExit_MouseEnter);
+            this.panelExit.MouseLeave += new System.EventHandler(this.panelExit_MouseLeave);
+            // 
+            // pictureExit
+            // 
+            this.pictureExit.Image = global::Курсач.Properties.Resources.Крестик1;
+            this.pictureExit.Location = new System.Drawing.Point(9, 0);
+            this.pictureExit.Name = "pictureExit";
+            this.pictureExit.Size = new System.Drawing.Size(27, 22);
+            this.pictureExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureExit.TabIndex = 0;
+            this.pictureExit.TabStop = false;
+            this.pictureExit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureExit_MouseClick);
+            this.pictureExit.MouseEnter += new System.EventHandler(this.pictureExit_MouseEnter);
+            this.pictureExit.MouseLeave += new System.EventHandler(this.pictureExit_MouseLeave);
+            // 
+            // panelHide
+            // 
+            this.panelHide.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelHide.Controls.Add(this.pictureHide);
+            this.panelHide.Location = new System.Drawing.Point(311, 0);
+            this.panelHide.Name = "panelHide";
+            this.panelHide.Size = new System.Drawing.Size(45, 23);
+            this.panelHide.TabIndex = 9;
+            this.panelHide.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelHide_MouseClick);
+            this.panelHide.MouseEnter += new System.EventHandler(this.panelHide_MouseEnter);
+            this.panelHide.MouseLeave += new System.EventHandler(this.panelHide_MouseLeave);
+            // 
+            // pictureHide
+            // 
+            this.pictureHide.Image = global::Курсач.Properties.Resources.пряталка;
+            this.pictureHide.Location = new System.Drawing.Point(9, 3);
+            this.pictureHide.Name = "pictureHide";
+            this.pictureHide.Size = new System.Drawing.Size(27, 17);
+            this.pictureHide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureHide.TabIndex = 0;
+            this.pictureHide.TabStop = false;
+            this.pictureHide.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureHide_MouseClick);
+            this.pictureHide.MouseEnter += new System.EventHandler(this.pictureHide_MouseEnter);
+            this.pictureHide.MouseLeave += new System.EventHandler(this.pictureHide_MouseLeave);
+            // 
+            // panelMove
+            // 
+            this.panelMove.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelMove.Location = new System.Drawing.Point(-2, 0);
+            this.panelMove.Name = "panelMove";
+            this.panelMove.Size = new System.Drawing.Size(316, 23);
+            this.panelMove.TabIndex = 10;
+            this.panelMove.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panelMove.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // PasswdManager
             // 
@@ -158,7 +214,9 @@
             this.BackgroundImage = global::Курсач.Properties.Resources.фон1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(397, 553);
-            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.panelMove);
+            this.Controls.Add(this.panelHide);
+            this.Controls.Add(this.panelExit);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.createAccount);
@@ -172,8 +230,10 @@
             this.Name = "PasswdManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "passwdManager";
-            this.MouseEnter += new System.EventHandler(this.PasswdManager_MouseEnter);
-            this.MouseLeave += new System.EventHandler(this.PasswdManager_MouseLeave);
+            this.panelExit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureExit)).EndInit();
+            this.panelHide.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHide)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,7 +249,11 @@
         private System.Windows.Forms.Label createAccount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label closeButton;
+        private System.Windows.Forms.Panel panelExit;
+        private System.Windows.Forms.Panel panelHide;
+        private System.Windows.Forms.PictureBox pictureExit;
+        private System.Windows.Forms.PictureBox pictureHide;
+        private System.Windows.Forms.Panel panelMove;
     }
 }
 
