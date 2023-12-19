@@ -57,11 +57,6 @@ namespace Курсач
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void loginButton_Click(object sender, EventArgs e)
         {
             String login = loginField.Text;
@@ -93,34 +88,79 @@ namespace Курсач
             registerform.Show();
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+        private void pictureHide_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pictureHide_MouseEnter(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientActiveCaption;
+        }
+
+        private void pictureHide_MouseLeave(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        private void panelHide_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void panelHide_MouseEnter(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientActiveCaption;
+        }
+
+        private void panelHide_MouseLeave(object sender, EventArgs e)
+        {
+            panelHide.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        private void pictureExit_MouseClick(object sender, MouseEventArgs e)
         {
             Application.Exit();
         }
 
-        private void PasswdManager_MouseEnter(object sender, EventArgs e)
+        private void pictureExit_MouseEnter(object sender, EventArgs e)
         {
-            closeButton.BackColor = Color.Red;
+            panelExit.BackColor = Color.Red;
         }
 
-        private void PasswdManager_MouseLeave(object sender, EventArgs e)
+        private void pictureExit_MouseLeave(object sender, EventArgs e)
         {
-            closeButton.BackColor = Color.White;
+            panelExit.BackColor = SystemColors.GradientInactiveCaption;
         }
 
-        private void closeButton_Click_1(object sender, EventArgs e)
+        private void panelExit_MouseClick(object sender, MouseEventArgs e)
         {
             Application.Exit();
         }
 
-        private void closeButton_MouseEnter(object sender, EventArgs e)
+        private void panelExit_MouseEnter(object sender, EventArgs e)
         {
-            closeButton.BackColor= Color.Red;
+            panelExit.BackColor = Color.Red;
         }
 
-        private void closeButton_MouseLeave(object sender, EventArgs e)
+        private void panelExit_MouseLeave(object sender, EventArgs e)
         {
-            closeButton.BackColor = Color.White;
+            panelExit.BackColor = SystemColors.GradientInactiveCaption;
+        }
+
+        Point lastPoint;
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point (e.X, e.Y);
         }
     }
 }

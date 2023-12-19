@@ -42,6 +42,15 @@
             this.Email = new System.Windows.Forms.Label();
             this.PhoneField = new System.Windows.Forms.TextBox();
             this.EmailField = new System.Windows.Forms.TextBox();
+            this.panelHide = new System.Windows.Forms.Panel();
+            this.pictureHide = new System.Windows.Forms.PictureBox();
+            this.panelExit = new System.Windows.Forms.Panel();
+            this.pictureExit = new System.Windows.Forms.PictureBox();
+            this.panelMove = new System.Windows.Forms.Panel();
+            this.panelHide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHide)).BeginInit();
+            this.panelExit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureExit)).BeginInit();
             this.SuspendLayout();
             // 
             // Home
@@ -224,6 +233,66 @@
             this.EmailField.Enter += new System.EventHandler(this.EmailField_Enter);
             this.EmailField.Leave += new System.EventHandler(this.EmailField_Leave);
             // 
+            // panelHide
+            // 
+            this.panelHide.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelHide.Controls.Add(this.pictureHide);
+            this.panelHide.Location = new System.Drawing.Point(522, 0);
+            this.panelHide.Name = "panelHide";
+            this.panelHide.Size = new System.Drawing.Size(45, 23);
+            this.panelHide.TabIndex = 21;
+            this.panelHide.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelHide_MouseClick);
+            this.panelHide.MouseEnter += new System.EventHandler(this.panelHide_MouseEnter);
+            this.panelHide.MouseLeave += new System.EventHandler(this.panelHide_MouseLeave);
+            // 
+            // pictureHide
+            // 
+            this.pictureHide.Image = global::Курсач.Properties.Resources.пряталка;
+            this.pictureHide.Location = new System.Drawing.Point(9, 3);
+            this.pictureHide.Name = "pictureHide";
+            this.pictureHide.Size = new System.Drawing.Size(27, 17);
+            this.pictureHide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureHide.TabIndex = 0;
+            this.pictureHide.TabStop = false;
+            this.pictureHide.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureHide_MouseClick);
+            this.pictureHide.MouseEnter += new System.EventHandler(this.pictureHide_MouseEnter);
+            this.pictureHide.MouseLeave += new System.EventHandler(this.pictureHide_MouseLeave);
+            // 
+            // panelExit
+            // 
+            this.panelExit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelExit.Controls.Add(this.pictureExit);
+            this.panelExit.Location = new System.Drawing.Point(564, 0);
+            this.panelExit.Name = "panelExit";
+            this.panelExit.Size = new System.Drawing.Size(45, 23);
+            this.panelExit.TabIndex = 20;
+            this.panelExit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelExit_MouseClick);
+            this.panelExit.MouseEnter += new System.EventHandler(this.panelExit_MouseEnter);
+            this.panelExit.MouseLeave += new System.EventHandler(this.panelExit_MouseLeave);
+            // 
+            // pictureExit
+            // 
+            this.pictureExit.Image = global::Курсач.Properties.Resources.Крестик1;
+            this.pictureExit.Location = new System.Drawing.Point(9, 0);
+            this.pictureExit.Name = "pictureExit";
+            this.pictureExit.Size = new System.Drawing.Size(27, 22);
+            this.pictureExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureExit.TabIndex = 0;
+            this.pictureExit.TabStop = false;
+            this.pictureExit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureExit_MouseClick);
+            this.pictureExit.MouseEnter += new System.EventHandler(this.pictureExit_MouseEnter);
+            this.pictureExit.MouseLeave += new System.EventHandler(this.pictureExit_MouseLeave);
+            // 
+            // panelMove
+            // 
+            this.panelMove.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelMove.Location = new System.Drawing.Point(0, 0);
+            this.panelMove.Name = "panelMove";
+            this.panelMove.Size = new System.Drawing.Size(525, 23);
+            this.panelMove.TabIndex = 22;
+            this.panelMove.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panelMove.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -232,6 +301,9 @@
             this.BackgroundImage = global::Курсач.Properties.Resources.фон;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(609, 553);
+            this.Controls.Add(this.panelHide);
+            this.Controls.Add(this.panelExit);
+            this.Controls.Add(this.panelMove);
             this.Controls.Add(this.phoneNumber);
             this.Controls.Add(this.Email);
             this.Controls.Add(this.PhoneField);
@@ -246,10 +318,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passwdField);
             this.Controls.Add(this.loginField);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.panelHide.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHide)).EndInit();
+            this.panelExit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,5 +347,10 @@
         private System.Windows.Forms.Label Email;
         private System.Windows.Forms.TextBox PhoneField;
         private System.Windows.Forms.TextBox EmailField;
+        private System.Windows.Forms.Panel panelHide;
+        private System.Windows.Forms.PictureBox pictureHide;
+        private System.Windows.Forms.Panel panelExit;
+        private System.Windows.Forms.PictureBox pictureExit;
+        private System.Windows.Forms.Panel panelMove;
     }
 }
