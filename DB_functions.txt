@@ -1,0 +1,68 @@
+CREATE FUNCTION create_user(user_login TEXT, user_passwd TEXT)
+RETURNS VOID AS $$
+BEGIN
+   EXECUTE FORMAT('CREATE ROLE "%I" LOGIN PASSWORD %L', user_login, user_passwd);
+   EXECUTE 'GRANT APP_USER TO ' || user_login;
+   EXECUTE 'GRANT USAGE, SELECT ON SEQUENCE services_service_id_seq TO ' || quote_ident(user_login);
+   EXECUTE 'GRANT USAGE, SELECT ON SEQUENCE credits_credit_id_seq TO ' || quote_ident(user_login)
+  END;
+END;
+$$ LANGUAGE plpgsql;
+
+-------------------------------------------------------------
+
+CREATE FUNCTION insert_user(
+    user_login TEXT,
+    user_email TEXT,
+    user_passwd TEXT,
+    user_phone_number TEXT
+) RETURNS VOID AS $$
+BEGIN
+  INSERT INTO users (login, email, passwd, phone_number)
+  VALUES (user_login, user_email, user_passwd, user_phone_number);
+END;
+$$ LANGUAGE plpgsql;
+
+--------------------------------------------------------------
+
+CREATE FUNCTION insert_credit(
+    credit_number text,
+    credit_date text,
+    credit_code text
+) RETURNS VOID AS $$
+DECLARE
+    user_id_var INTEGER;
+BEGIN
+
+    SELECT user_id INTO user_id_var FROM users WHERE login = current_user;
+
+    IF user_id_var IS NOT NULL THEN
+        INSERT INTO credits (user_id, credit_number, credit_date, credit_code)
+        VALUES (user_id_var, credit_number, credit_date, credit_code);
+    ELSE
+        RAISE EXCEPTION 'Текущий пользователь не существует в таблице users';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+---------------------------------------------------------------
+
+CREATE FUNCTION insert_service(
+    service_name TEXT,
+    login_service TEXT,
+    passwd_service TEXT
+) RETURNS VOID AS $$
+DECLARE
+    user_id_var INTEGER;
+BEGIN
+
+    SELECT user_id INTO user_id_var FROM users WHERE login = current_user;
+
+    IF user_id_var IS NOT NULL THEN
+        INSERT INTO services (user_id, service_name, login_service, passwd_service)
+        VALUES (user_id_var, service_name, login_service, passwd_service);
+    ELSE
+        RAISE EXCEPTION 'Текущий пользователь не существует в таблице users';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
