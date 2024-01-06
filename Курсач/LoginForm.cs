@@ -6,12 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Курсач
 {
     public partial class PasswdManager : Form
     {
+        public static string login;
+        public static string password;
         public PasswdManager()
         {
             InitializeComponent();
@@ -59,8 +62,10 @@ namespace Курсач
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            String login = loginField.Text;
-            String passwd = passwdField.Text;
+            login = loginField.Text;
+            password = passwdField.Text;
+
+            string passwordHash = "";
 
             DB db = new DB();
 
@@ -68,17 +73,31 @@ namespace Курсач
 
             Npgsql.NpgsqlDataAdapter adapter = new Npgsql.NpgsqlDataAdapter();
 
-            Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM users WHERE login = @ul and passwd = @up", db.GetConnection());
+            Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM users WHERE login = @ul", db.GetConnection("postgres", "Slayanin2003"));
             command.Parameters.Add("@ul", NpgsqlTypes.NpgsqlDbType.Text).Value = login;
-            command.Parameters.Add("@up", NpgsqlTypes.NpgsqlDbType.Text).Value = passwd;
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
+            DataRow[] rows = table.Select();
 
-            if (table.Rows.Count > 0)
-                MessageBox.Show("Успех");
+            if (table.Rows.Count == 1)
+            {
+                passwordHash = $"{rows[0]["passwd"]}";
+                if (BCrypt.Net.BCrypt.EnhancedVerify(password, passwordHash) == true)
+                {
+
+                    this.Hide();
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка авторизации!");
+                }
+            }
+
             else
-                MessageBox.Show("Неудача");
+                MessageBox.Show("Ошибка авторизации!");
         }
 
         private void SignUp_Click(object sender, EventArgs e)

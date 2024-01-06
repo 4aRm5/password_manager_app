@@ -196,7 +196,7 @@ namespace Курсач
 
                 Npgsql.NpgsqlDataAdapter adapter = new Npgsql.NpgsqlDataAdapter();
 
-                Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM users WHERE email = @um or phone_number = @uph or login = @ul", db.GetConnection());
+                Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM users WHERE email = @um or phone_number = @uph or login = @ul", db.GetConnection("postgres", "Slayanin2003"));
                 command.Parameters.Add("@um", NpgsqlTypes.NpgsqlDbType.Text).Value = email;
                 command.Parameters.Add("@uph", NpgsqlTypes.NpgsqlDbType.Text).Value = phone;
                 command.Parameters.Add("@ul", NpgsqlTypes.NpgsqlDbType.Text).Value = login;
@@ -210,11 +210,18 @@ namespace Курсач
                 }
                 else
                 {
-                    command = new Npgsql.NpgsqlCommand("INSERT INTO users (email, passwd, phone_number, login) values (@um, @up, @uph, @ul)", db.GetConnection());
+                    command = new Npgsql.NpgsqlCommand("INSERT INTO users (email, passwd, phone_number, login) values (@um, @up, @uph, @ul)", db.GetConnection("postgres", "Slayanin2003"));
                     command.Parameters.Add("@um", NpgsqlTypes.NpgsqlDbType.Text).Value = email;
                     command.Parameters.Add("@up", NpgsqlTypes.NpgsqlDbType.Text).Value = passwordHash;
                     command.Parameters.Add("@uph", NpgsqlTypes.NpgsqlDbType.Text).Value = phone;
                     command.Parameters.Add("@ul", NpgsqlTypes.NpgsqlDbType.Text).Value = login;
+
+                    adapter.SelectCommand = command;
+                    adapter.Fill(table);
+
+                    command = new Npgsql.NpgsqlCommand("SELECT create_user(@ul, @up)", db.GetConnection("postgres", "Slayanin2003"));
+                    command.Parameters.Add("@ul", NpgsqlTypes.NpgsqlDbType.Text).Value = login;
+                    command.Parameters.Add("up", NpgsqlTypes.NpgsqlDbType.Text).Value = passwd;
 
                     adapter.SelectCommand = command;
                     adapter.Fill(table);
