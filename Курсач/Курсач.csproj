@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -96,6 +99,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu2.Designer.cs">
+      <DependentUpon>MainMenu2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewCard.Designer.cs">
+      <DependentUpon>NewCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewService.Designer.cs">
+      <DependentUpon>NewService.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +139,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu2.resx">
+      <DependentUpon>MainMenu2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewCard.resx">
+      <DependentUpon>NewCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewService.resx">
+      <DependentUpon>NewService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -148,6 +187,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Логин.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Выход.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Выход1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\пароли.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\карты.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\пароли1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Крестик.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\пряталка.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
