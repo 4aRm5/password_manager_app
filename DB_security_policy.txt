@@ -1,0 +1,25 @@
+СREATE ROLE APP_USER;
+CREATE ROLE APP_GUEST;
+
+GRANT USAGE ON SCHEMA public TO APP_USER;
+GRANT USAGE ON SCHEMA public TO APP_GUEST;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON users to APP_USER;
+GRANT SELECT, INSERT, UPDATE, DELETE ON credits to APP_USER;
+GRANT SELECT, INSERT, UPDATE, DELETE ON services to APP_USER;
+
+GRANT INSERT ON users to APP_GUEST;
+
+
+CREATE POLICY user_access ON users
+USING (login = current_user);
+
+CREATE POLICY credits_access ON credits
+USING (user_id = (SELECT user_id FROM users WHERE login = current_user));
+
+CREATE POLICY services_access ON services
+USING (user_id = (SELECT user_id FROM users WHERE login = current_user));
+
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE credits ENABLE ROW LEVEL SECURITY;
+ALTER TABLE services ENABLE ROW LEVEL SECURITY;
