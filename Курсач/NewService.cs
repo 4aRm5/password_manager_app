@@ -78,7 +78,7 @@ namespace Курсач
             }
         }
 
-        private void addButton_MouseClick(object sender, MouseEventArgs e)
+        private void addButton_Click(object sender, MouseEventArgs e)
         {
             if (TestOfCorrectData(textServiceName, textLogin, textPassword))
             {
