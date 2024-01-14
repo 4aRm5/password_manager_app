@@ -81,46 +81,48 @@ namespace Курсач
         private void addButton_MouseClick(object sender, MouseEventArgs e)
         {
 
-            if (textServiceName.Text == "")
-            {
-                MessageBox.Show("Введите имя сервиса");
-                labelServiceName.ForeColor = Color.Red;
+            //if (textServiceName.Text == "")
+            //{
+            //    MessageBox.Show("Введите имя сервиса");
+            //    labelServiceName.ForeColor = Color.Red;
 
-                labelLogin.ForeColor = SystemColors.HotTrack;
-                labelPassword.ForeColor = SystemColors.HotTrack;
-            }
-            else if (textLogin.Text == "")
-            {
-                MessageBox.Show("Введите логин");
-                labelLogin.ForeColor = Color.Red;
+            //    labelLogin.ForeColor = SystemColors.HotTrack;
+            //    labelPassword.ForeColor = SystemColors.HotTrack;
+            //}
+            //else if (textLogin.Text == "")
+            //{
+            //    MessageBox.Show("Введите логин");
+            //    labelLogin.ForeColor = Color.Red;
 
-                labelServiceName.ForeColor = SystemColors.HotTrack;
-                labelPassword.ForeColor = SystemColors.HotTrack;
-            }
-            else if (textPassword.Text == "")
-            {
-                MessageBox.Show("Введите пароль");
-                labelPassword.ForeColor = Color.Red;
+            //    labelServiceName.ForeColor = SystemColors.HotTrack;
+            //    labelPassword.ForeColor = SystemColors.HotTrack;
+            //}
+            //else if (textPassword.Text == "")
+            //{
+            //    MessageBox.Show("Введите пароль");
+            //    labelPassword.ForeColor = Color.Red;
 
-                labelLogin.ForeColor = SystemColors.HotTrack;
-                labelServiceName.ForeColor = SystemColors.HotTrack;
-            }
-            else
+            //    labelLogin.ForeColor = SystemColors.HotTrack;
+            //    labelServiceName.ForeColor = SystemColors.HotTrack;
+            //}
+
+            if (TestOfCorrectData(textServiceName, textLogin, textPassword))
             {
                 string serviceName = textServiceName.Text;
                 string serviceLogin = textLogin.Text;
                 string servicePassword = textPassword.Text;
 
-                DB db = new DB();
-
                 DataTable table = new DataTable();
 
                 Npgsql.NpgsqlDataAdapter adapter = new Npgsql.NpgsqlDataAdapter();
 
-                Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM credits WHERE service_name = @sn and login_service = @sl and passwd_service = @sp", db.GetConnection(PasswdManager.login, PasswdManager.password));
-                command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
-                command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
-                command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
+                //Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM credits WHERE service_name = @sn and login_service = @sl and passwd_service = @sp", db.GetConnection(PasswdManager.login, PasswdManager.password));
+                //command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
+                //command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
+                //command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
+
+                adapter.SelectCommand = SelectFromDB(serviceName, serviceLogin, servicePassword);
+                adapter.Fill(table);
 
                 if (table.Rows.Count > 0)
                 {
@@ -128,12 +130,12 @@ namespace Курсач
                 }
                 else
                 {
-                    command = new Npgsql.NpgsqlCommand("SELECT insert_service(@sn, @sl, @sp)", db.GetConnection(PasswdManager.login, PasswdManager.password));
-                    command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
-                    command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
-                    command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
+                    //command = new Npgsql.NpgsqlCommand("SELECT insert_service(@sn, @sl, @sp)", db.GetConnection(PasswdManager.login, PasswdManager.password));
+                    //command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
+                    //command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
+                    //command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
 
-                    adapter.SelectCommand = command;
+                    adapter.SelectCommand = InsertIntoDB(serviceName, serviceLogin, servicePassword);
                     adapter.Fill(table);
 
                     MessageBox.Show("Данные успешно добавлены!");
@@ -142,6 +144,62 @@ namespace Курсач
                     mainMenu.Show();
                 }
             }
+        }
+
+        public bool TestOfCorrectData(TextBox textServiceName, TextBox textLogin, TextBox textPassword)
+        {
+            if (textServiceName.Text == "" || textServiceName.Text == "Service name")
+            {
+                MessageBox.Show("Введите имя сервиса");
+                labelServiceName.ForeColor = Color.Red;
+
+                labelLogin.ForeColor = SystemColors.HotTrack;
+                labelPassword.ForeColor = SystemColors.HotTrack;
+                return false;
+            }
+            else if (textLogin.Text == "" || textLogin.Text == "Service login")
+            {
+                MessageBox.Show("Введите логин");
+                labelLogin.ForeColor = Color.Red;
+
+                labelServiceName.ForeColor = SystemColors.HotTrack;
+                labelPassword.ForeColor = SystemColors.HotTrack;
+                return false;
+            }
+            else if (textPassword.Text == "" || textPassword.Text == "Service password")
+            {
+                MessageBox.Show("Введите пароль");
+                labelPassword.ForeColor = Color.Red;
+
+                labelLogin.ForeColor = SystemColors.HotTrack;
+                labelServiceName.ForeColor = SystemColors.HotTrack;
+                return false;
+            }
+            return true;
+        }
+
+        public Npgsql.NpgsqlCommand SelectFromDB(string serviceName, string serviceLogin, string servicePassword)
+        {
+            DB db = new DB();
+
+            Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM services WHERE service_name = @sn and login_service = @sl and passwd_service = @sp", db.GetConnection(PasswdManager.login, PasswdManager.password));
+            command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
+            command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
+            command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
+
+            return command;
+        }
+
+        public Npgsql.NpgsqlCommand InsertIntoDB(string serviceName, string serviceLogin, string servicePassword)
+        {
+            DB db = new DB();
+
+            Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT insert_service(@sn, @sl, @sp)", db.GetConnection(PasswdManager.login, PasswdManager.password));
+            command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
+            command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
+            command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
+
+            return command;
         }
 
         private void returnButton_MouseClick(object sender, MouseEventArgs e)
