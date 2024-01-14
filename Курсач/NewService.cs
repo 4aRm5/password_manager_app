@@ -80,32 +80,6 @@ namespace Курсач
 
         private void addButton_MouseClick(object sender, MouseEventArgs e)
         {
-
-            //if (textServiceName.Text == "")
-            //{
-            //    MessageBox.Show("Введите имя сервиса");
-            //    labelServiceName.ForeColor = Color.Red;
-
-            //    labelLogin.ForeColor = SystemColors.HotTrack;
-            //    labelPassword.ForeColor = SystemColors.HotTrack;
-            //}
-            //else if (textLogin.Text == "")
-            //{
-            //    MessageBox.Show("Введите логин");
-            //    labelLogin.ForeColor = Color.Red;
-
-            //    labelServiceName.ForeColor = SystemColors.HotTrack;
-            //    labelPassword.ForeColor = SystemColors.HotTrack;
-            //}
-            //else if (textPassword.Text == "")
-            //{
-            //    MessageBox.Show("Введите пароль");
-            //    labelPassword.ForeColor = Color.Red;
-
-            //    labelLogin.ForeColor = SystemColors.HotTrack;
-            //    labelServiceName.ForeColor = SystemColors.HotTrack;
-            //}
-
             if (TestOfCorrectData(textServiceName, textLogin, textPassword))
             {
                 string serviceName = textServiceName.Text;
@@ -115,12 +89,7 @@ namespace Курсач
                 DataTable table = new DataTable();
 
                 Npgsql.NpgsqlDataAdapter adapter = new Npgsql.NpgsqlDataAdapter();
-
-                //Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT * FROM credits WHERE service_name = @sn and login_service = @sl and passwd_service = @sp", db.GetConnection(PasswdManager.login, PasswdManager.password));
-                //command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
-                //command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
-                //command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
-
+                
                 adapter.SelectCommand = SelectFromDB(serviceName, serviceLogin, servicePassword);
                 adapter.Fill(table);
 
@@ -130,11 +99,6 @@ namespace Курсач
                 }
                 else
                 {
-                    //command = new Npgsql.NpgsqlCommand("SELECT insert_service(@sn, @sl, @sp)", db.GetConnection(PasswdManager.login, PasswdManager.password));
-                    //command.Parameters.Add("@sn", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceName;
-                    //command.Parameters.Add("@sl", NpgsqlTypes.NpgsqlDbType.Text).Value = serviceLogin;
-                    //command.Parameters.Add("@sp", NpgsqlTypes.NpgsqlDbType.Text).Value = servicePassword;
-
                     adapter.SelectCommand = InsertIntoDB(serviceName, serviceLogin, servicePassword);
                     adapter.Fill(table);
 
