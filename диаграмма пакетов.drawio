@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" modified="2024-01-15T14:03:28.979Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36" etag="TkYCJ96EyWPM4MbP84Nx" version="22.1.18" type="device">
+  <diagram name="Page-1" id="b5b7bab2-c9e2-2cf4-8b2a-24fd1a2a6d21">
+    <mxGraphModel dx="1179" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="i292DVJRKeV6EYU2T-01-1" value="Пользователь" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="220" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-2" value="Данные о сервисе" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="127.5" y="210" width="85" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-3" value="Данные о банковской карте" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="117.5" y="310" width="105" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-4" value="Приложение" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="400" y="140" width="210" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-5" value="Просмотр данных" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="220" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-7" value="Добавление данных" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="464" y="320" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-9" value="База данных" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="710" y="120" width="262" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-10" value="Сохраненные&lt;br&gt;данные о&amp;nbsp;&lt;br&gt;сервисах" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="781.5" y="170" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-11" value="Сохраненные данные о&lt;br&gt;банковских картах" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="781.5" y="310" width="119" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-13" value="&amp;lt;&amp;lt;import&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=85;exitDy=42;exitPerimeter=0;entryX=-0.011;entryY=0.387;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="i292DVJRKeV6EYU2T-01-2" target="i292DVJRKeV6EYU2T-01-4">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="240" y="250" as="sourcePoint" />
+            <mxPoint x="500" y="252" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-14" value="&amp;lt;&amp;lt;import&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=85;exitDy=42;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="222.5" y="360" as="sourcePoint" />
+            <mxPoint x="400" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-15" value="&amp;lt;&amp;lt;import&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=85;exitDy=42;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="554" y="360" as="sourcePoint" />
+            <mxPoint x="710" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-16" value="&amp;lt;&amp;lt;access&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=85;exitDy=42;exitPerimeter=0;entryX=0;entryY=0;entryDx=90;entryDy=37;entryPerimeter=0;" edge="1" parent="1" target="i292DVJRKeV6EYU2T-01-5">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="780" y="350" as="sourcePoint" />
+            <mxPoint x="570" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i292DVJRKeV6EYU2T-01-17" value="&amp;lt;&amp;lt;access&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=85;exitDy=42;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="781.5" y="210" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
